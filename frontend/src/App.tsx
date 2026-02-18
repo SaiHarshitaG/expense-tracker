@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import ExpenseForm from "./components/ExpenseForm";
+import ExpenseList from "./components/ExpenseList";
+import FilterControls from "./components/FilterControls";
+import { useExpenses } from "./hooks/useExpenses";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [category, setCategory] = useState("");
+  const [sort, setSort] = useState("");
+
+  const { data, isLoading, isError } = useExpenses(category, sort);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8 space-y-8">
+
+        <h1 className="text-4xl font-bold text-center text-gray-800">
+          Expense Tracker
+        </h1>
+
+        <ExpenseForm />
+
+        <FilterControls
+          category={category}
+          setCategory={setCategory}
+          sort={sort}
+          setSort={setSort}
+        />
+
+        {isLoading && (
+          <p className="text-center text-gray-500">Loading...</p>
+        )}
+
+        {isError && (
+          <p className="text-center text-red-500">
+            Error loading expenses
+          </p>
+        )}
+
+        {data && (
+          <ExpenseList
+            expenses={data.expenses}
+            total={data.total}
+          />
+        )}
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
