@@ -11,7 +11,7 @@ export const createExpense = async (data: any, idempotencyKey?: string) => {
   }
 
   return prisma.expense.create({
-    data:{
+    data: {
       amount: new Prisma.Decimal(data.amount),
       category: data.category,
       description: data.description ?? "",
@@ -21,11 +21,22 @@ export const createExpense = async (data: any, idempotencyKey?: string) => {
   });
 };
 
-export const getExpenses = async (category?: string,  sort?: string) => {
-  return prisma.expense.findMany({
+export const getExpenses = async (category?: string, sort?: string) => {
+  const expenses = await prisma.expense.findMany({
     where: category ? { category } : {},
-    orderBy: sort === "date_desc"
+    orderBy:
+      sort === "date_desc"
         ? { date: "desc" }
-        : undefined
+        : undefined,
   });
+
+  const total = expenses.reduce(
+    (sum, e) => sum + Number(e.amount),
+    0
+  );
+
+  return {
+    expenses,
+    total: Number(total),
+  };
 };
