@@ -110,7 +110,7 @@ The application deployed using:
 
 Backend: Render [https://expense-tracker-pc2w.onrender.com/api/expenses](https://expense-tracker-pc2w.onrender.com/api/expenses)
 
-Frontend: Vercel  [https://expense-tracker-nndzqakrq-saiharshitags-projects.vercel.app](https://expense-tracker-nndzqakrq-saiharshitags-projects.vercel.app)
+Frontend: Vercel  [https://expense-tracker-nndzqakrq-saiharshitags-projects.vercel.app](https://expense-tracker-9ni5vwx66-saiharshitags-projects.vercel.app)
 
 Environment variables required:```
 DATABASE_URL=file:./prisma/dev.db```
