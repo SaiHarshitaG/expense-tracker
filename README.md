@@ -108,7 +108,7 @@ Avoids floating-point precision errors.
 
 The application deployed using:
 
-Backend: Render ```https://expense-tracker-pc2w.onrender.com/```
+Backend: Render ```https://expense-tracker-pc2w.onrender.com/api```
 
 Frontend: Vercel  ```https://expense-tracker-nndzqakrq-saiharshitags-projects.vercel.app```
 
