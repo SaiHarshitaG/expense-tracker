@@ -107,9 +107,10 @@ Avoids floating-point precision errors.
 ## Deployment Ready
 
 The application deployed using:
-```
-Backend: Render
-Frontend: Vercel 
-Environment variables required:
-DATABASE_URL=file:./prisma/dev.db
-```
+
+Backend: Render ```https://expense-tracker-pc2w.onrender.com/```
+
+Frontend: Vercel  ```https://expense-tracker-nndzqakrq-saiharshitags-projects.vercel.app```
+
+Environment variables required:```
+DATABASE_URL=file:./prisma/dev.db```
